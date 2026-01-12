@@ -105,6 +105,72 @@
         }
     }
 </script>
+    
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW WORLD 360 - Upload</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0f0f0f; color: #ffffff; text-align: center; margin: 0; padding: 20px; }
+        .container { max-width: 400px; margin: auto; background: #1e1e1e; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h2 { color: #0088cc; }
+        .upload-box { border: 2px dashed #333; padding: 20px; border-radius: 15px; margin-top: 20px; }
+        .select-btn { background: #0088cc; color: white; padding: 12px 20px; border-radius: 25px; cursor: pointer; display: inline-block; font-weight: bold; margin-bottom: 15px; }
+        .send-btn { background: #28a745; color: white; padding: 15px 30px; border-radius: 30px; border: none; font-weight: bold; display: none; width: 100%; cursor: pointer; font-size: 16px; }
+        #status { margin-top: 15px; font-size: 13px; color: #ffcc00; }
+        input[type="file"] { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>NEW WORLD 360 🎬</h2>
+        <p>የሚፈልጉትን ቪዲዮ ወይም ፎቶ ይላኩልን</p>
+
+        <div class="upload-box">
+            <label for="fileInput" class="select-btn">ፋይል ይምረጡ</label>
+            <input type="file" id="fileInput" onchange="checkFile()">
+            <div id="status">ምንም ፋይል አልተመረጠም</div>
+        </div>
+
+        <button id="sendBtn" class="send-btn" onclick="sendFile()">አሁኑኑ ላክ 🚀</button>
+    </div>
+
+    <script>
+        // ቴሌግራም ዌብ አፕን ማስጀመር
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // አፑ ሙሉ ስክሪን እንዲሆን
+
+        function checkFile() {
+            const input = document.getElementById('fileInput');
+            const status = document.getElementById('status');
+            const sendBtn = document.getElementById('sendBtn');
+
+            if (input.files.length > 0) {
+                status.innerText = "ተመርጧል፡ " + input.files[0].name;
+                status.style.color = "#28a745";
+                sendBtn.style.display = "block"; // ፋይል ሲመረጥ የላክ በተን እንዲመጣ
+            }
+        }
+
+        function sendFile() {
+            const status = document.getElementById('status');
+            status.innerText = "በመላክ ላይ... እባክዎ ይጠብቁ";
+            
+            // ማሳሰቢያ፡ እውነተኛ ሰርቨር ሳይኖር ፋይሉን በቀጥታ መላክ ስለማይቻል
+            // ተጠቃሚው ወደ ቦቱ እንዲልክ መልዕክት ያሳየዋል
+            tg.sendData("አዲስ ፋይል ተመርጧል፡ " + document.getElementById('fileInput').files[0].name);
+            
+            setTimeout(() => {
+                tg.close(); // ፋይሉን መርጦ ሲጨርስ አፑ ይዘጋል
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
 
 </body>
 </html>
