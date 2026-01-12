@@ -85,6 +85,25 @@
     </div>
 
     <p style="margin-top: 40px; color: #555; font-size: 12px;">© 2026 NEWWORLD360 Media</p>
+<div class="app-card" style="margin-top: 20px;">
+    <h3>ፋይል ይላኩ</h3>
+    <p>ፎቶ ወይም ቪዲዮ ለመላክ ከታች ያለውን ይጫኑ</p>
+    <input type="file" id="fileInput" style="display: none;" onchange="handleFile(this)">
+    <label for="fileInput" class="main-btn" style="background-color: #28a745; cursor: pointer;">
+        ፋይል ምረጥ 📤
+    </label>
+    <div id="status" style="margin-top: 10px; font-size: 14px; color: #0088cc;"></div>
+</div>
+
+<script>
+    function handleFile(input) {
+        const status = document.getElementById('status');
+        if (input.files && input.files[0]) {
+            status.innerText = "ፋይል ተመርጧል፡ " + input.files[0].name;
+            // እዚህ ጋር ፋይሉን ወደ ሰርቨር የሚልክ ኮድ ይታከላል
+        }
+    }
+</script>
 
 </body>
 </html>
