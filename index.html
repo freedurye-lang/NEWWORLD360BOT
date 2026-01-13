@@ -1,117 +1,117 @@
-
 <!DOCTYPE html>
 <html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEW WORLD 360 Media</title>
+    <title>ምዝገባ - NEW WORLD 360</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #0f0f0f;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .header {
-            background-color: #202020;
-            width: 100%;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 2px solid #0088cc;
-        }
-        .container {
-            width: 90%;
-            max-width: 450px;
-            margin-top: 30px;
-            text-align: center;
-        }
-        .app-card {
-            background: #1e1e1e;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        h1 { color: #0088cc; margin-bottom: 10px; font-size: 26px; }
-        p { color: #cccccc; line-height: 1.6; }
-        .main-btn {
-            display: block;
-            background-color: #0088cc;
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 30px;
-            margin-top: 25px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .main-btn:active { transform: scale(0.95); background-color: #0077b5; }
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .feature-item {
-            background: #2a2a2a;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 14px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; direction: ltr; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #0088cc; border-bottom: 2px solid #0088cc; padding-bottom: 10px; }
+        .section-title { font-weight: bold; margin-top: 20px; color: #555; background: #eef7ff; padding: 5px 10px; border-radius: 5px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .radio-group { display: flex; gap: 15px; margin-top: 5px; }
+        .upload-section { border: 2px dashed #0088cc; padding: 15px; border-radius: 10px; text-align: center; margin-top: 15px; background: #f0faff; }
+        .submit-btn { width: 100%; background: #28a745; color: white; border: none; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        #status { margin-top: 15px; text-align: center; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<body>
+<div class="container">
+    <h2>እንኳን ደህና መጡ!</h2>
+    <p style="text-align: center; font-size: 14px;">የምዝገባ ፎርም</p>
 
-    <div class="container">
-        <h2>NEW WORLD 360 🎬</h2>
-        <p>የሚፈልጉትን ቪዲዮ ወይም ፎቶ ይላኩልን</p>
-
-        <div class="upload-box">
-            <label for="fileInput" class="select-btn">ፋይል ይምረጡ</label>
-            <input type="file" id="fileInput" onchange="checkFile()">
-            <div id="status">ምንም ፋይል አልተመረጠም</div>
-        </div>
-
-        <button id="sendBtn" class="send-btn" onclick="sendFile()">አሁኑኑ ላክ 🚀</button>
+    <div class="form-group">
+        <label>1. ሙሉ ስም፡</label>
+        <input type="text" id="fullName" placeholder="ስምዎን ያስገቡ">
     </div>
 
-    <script>
-        // ቴሌግራም ዌብ አፕን ማስጀመር
-        const tg = window.Telegram.WebApp;
-        tg.expand(); // አፑ ሙሉ ስክሪን እንዲሆን
+    <div class="form-group">
+        <label>2. ደረጃዎ፡</label>
+        <div class="radio-group">
+            <label><input type="radio" name="role" value="ተማሪ"> ተማሪ</label>
+            <label><input type="radio" name="role" value="ሰራተኛ"> ሰራተኛ</label>
+        </div>
+    </div>
 
-        function checkFile() {
-            const input = document.getElementById('fileInput');
-            const status = document.getElementById('status');
-            const sendBtn = document.getElementById('sendBtn');
+    <div class="section-title">ተማሪ ከሆኑ የሚከተሉትን ይሙሉ፡</div>
+    <div class="form-group">
+        <label>የትምህርት ደረጃ እና አይነት፡</label>
+        <input type="text" id="studentDetail" placeholder="ለምሳሌ፡ 12ኛ ክፍል">
+    </div>
 
-            if (input.files.length > 0) {
-                status.innerText = "ተመርጧል፡ " + input.files[0].name;
-                status.style.color = "#28a745";
-                sendBtn.style.display = "block"; // ፋይል ሲመረጥ የላክ በተን እንዲመጣ
-            }
+    <div class="section-title">ሰራተኛ ከሆኑ የሚከተሉትን ይሙሉ፡</div>
+    <div class="form-group">
+        <label>የስራ አይነት፡</label>
+        <input type="text" id="jobDetail" placeholder="የስራዎን አይነት ይጥቀሱ">
+    </div>
+
+    <div class="form-group">
+        <label>3. እድሜ፡</label>
+        <select id="age">
+            <option value="16">16</option><option value="17">17</option><option value="18">18</option>
+            <option value="19">19</option><option value="20">20</option><option value="21">21</option>
+        </select>
+    </div>
+
+    <div class="section-title">አገልግሎቶች</div>
+    <div class="form-group">
+        <label>የሚፈልጉት አገልግሎት፡</label>
+        <select id="service">
+            <option value="ሒሳብ ለማወቅ">ሒሳብ ለማወቅ</option>
+            <option value="ሒሳብ ለመመዝገብ">ሒሳብ ለመመዝገብ</option>
+            <option value="ጉርሻ ለመቀበል">ጉርሻ ለመቀበል</option>
+            <option value="ስለ ቤቱ ለማወቅ">ስለ ቤቱ ለማወቅ</option>
+        </select>
+    </div>
+
+    <div class="upload-section">
+        <label>የእርቃን ፎቶ ወይም ቪዲዮ ይላኩ</label>
+        <input type="file" id="fileInput" accept="image/*,video/*">
+        <p style="font-size: 11px; color: #777;">(ይህ መረጃ ለኦነሩ ይደርሳል)</p>
+    </div>
+
+    <button class="submit-btn" onclick="submitForm()">ምዝገባውን ጨርስ ✅</button>
+    <div id="status"></div>
+</div>
+
+<script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    function submitForm() {
+        const name = document.getElementById('fullName').value;
+        const role = document.querySelector('input[name="role"]:checked')?.value || "ያልተጠቀሰ";
+        const service = document.getElementById('service').value;
+        const status = document.getElementById('status');
+
+        if(!name) {
+            alert("እባክዎ ስምዎን ያስገቡ!");
+            return;
         }
 
-        function sendFile() {
-            const status = document.getElementById('status');
-            status.innerText = "በመላክ ላይ... እባክዎ ይጠብቁ";
-            
-            // ማሳሰቢያ፡ እውነተኛ ሰርቨር ሳይኖር ፋይሉን በቀጥታ መላክ ስለማይቻል
-            // ተጠቃሚው ወደ ቦቱ እንዲልክ መልዕክት ያሳየዋል
-            tg.sendData("አዲስ ፋይል ተመርጧል፡ " + document.getElementById('fileInput').files[0].name);
-            
-            setTimeout(() => {
-                tg.close(); // ፋይሉን መርጦ ሲጨርስ አፑ ይዘጋል
-            }, 2000);
-        }
-    </script>
-</body>
-</html>
+        status.innerText = "በመላክ ላይ...";
+        status.style.color = "#0088cc";
+
+        // መረጃውን ወደ ቦቱ መላክ
+        const data = {
+            name: name,
+            role: role,
+            service: service,
+            msg: "አዲስ ምዝገባ ተከናውኗል"
+        };
+
+        tg.sendData(JSON.stringify(data));
+
+        setTimeout(() => {
+            tg.close();
+        }, 2000);
+    }
+</script>
 
 </body>
 </html>
